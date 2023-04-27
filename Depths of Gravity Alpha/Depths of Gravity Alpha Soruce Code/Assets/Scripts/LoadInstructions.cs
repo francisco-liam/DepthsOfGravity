@@ -31,5 +31,9 @@ public class LoadInstructions : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
-    //test
+
+    public void loadCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
