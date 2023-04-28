@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            transform.position += new Vector3(0, 0, velocity * Time.deltaTime); 
+            transform.position += new Vector3(0, 0, velocity * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -44,13 +44,11 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(velocity * Time.deltaTime, 0, 0);
         }
 
-        if(Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             float gravY = Physics.gravity.y;
-            Physics.gravity =  new Vector3(1, -gravY, 1);
-        }
-
-        
+            Physics.gravity = new Vector3(1, -gravY, 1);
+        }   
 
         if(damageTimer < iTime)
             damageTimer += Time.deltaTime;
