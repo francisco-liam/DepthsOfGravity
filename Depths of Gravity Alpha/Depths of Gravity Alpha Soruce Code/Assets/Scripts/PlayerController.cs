@@ -84,5 +84,9 @@ public class PlayerController : MonoBehaviour
                 heart2.SetActive(false);
             }
         }
+        if (collision.collider.CompareTag("Gem")) 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
