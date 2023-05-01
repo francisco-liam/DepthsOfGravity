@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float iTime;
     public GameObject heart2;
     public GameObject heart3;
+    public int ammo;
+    public GameObject coal;
     //public TextMeshProUGUI healthText;
 
     // Start is called before the first frame update
@@ -48,9 +51,30 @@ public class PlayerController : MonoBehaviour
         {
             float gravY = Physics.gravity.y;
             Physics.gravity = new Vector3(1, -gravY, 1);
-        }   
+        }
 
-        if(damageTimer < iTime)
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammo > 0)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit))
+            {
+                GameObject proj = Instantiate(coal, transform.position, Quaternion.identity);
+                Physics.IgnoreCollision(proj.GetComponent<Collider>(), GetComponent<Collider>());
+
+
+                Rigidbody rb = proj.GetComponent<Rigidbody>();
+                Vector3 direction = hit.point - transform.position;
+
+                direction.Normalize();
+
+                rb.AddForce(direction * 1000f);
+
+            }
+        }
+
+        if (damageTimer < iTime)
             damageTimer += Time.deltaTime;
 
         if (damageTimer > iTime)
@@ -87,6 +111,14 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Gem")) 
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ammo"))
+        {
+            ammo++;
         }
     }
 }
