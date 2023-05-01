@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6592170152827775155}
   - component: {fileID: 6554925262957972841}
   - component: {fileID: -7222683746241442878}
+  - component: {fileID: 6674740974303247050}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -58,14 +59,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6553304724905539925}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029802318}
-  m_LocalPosition: {x: 12.124842, y: 3.27, z: 2.9585886}
+  m_LocalPosition: {x: 12.124842, y: 3.482, z: 2.9585886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6555358862495139709}
   - {fileID: 6550271111685824585}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!111 &6592170152827775155
 Animation:
@@ -195,6 +196,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &6674740974303247050
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553304724905539925}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.45
+  m_Center: {x: 0, y: 0.38, z: 0}
 --- !u!1 &6553621670654547583
 GameObject:
   m_ObjectHideFlags: 0
