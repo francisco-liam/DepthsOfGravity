@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public int ammo;
     public GameObject coal;
     public AudioSource gravSound;
+    public AudioSource hurtSound;
     public TextMeshProUGUI ammoText;
 
     // Start is called before the first frame update
@@ -107,7 +108,8 @@ public class PlayerController : MonoBehaviour
 
         if(health <= 0)
         {
-            SceneManager.LoadScene("Level1");
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
     }
 
@@ -115,6 +117,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Damaging")) 
         {
+            hurtSound.Play();
+            
             if(damageTimer == iTime)
             {
                 health--;
@@ -131,7 +135,8 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.collider.CompareTag("Gem")) 
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("LevelSelect");
         }
     }
 

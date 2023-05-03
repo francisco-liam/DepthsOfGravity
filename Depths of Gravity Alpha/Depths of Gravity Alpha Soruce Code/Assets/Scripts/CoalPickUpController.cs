@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoalPickUpController : MonoBehaviour
 {
+    public AudioSource coalSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,6 @@ public class CoalPickUpController : MonoBehaviour
     {
         //if (other.CompareTag("Player"))
             //Destroy(gameObject);
+        coalSound.Play();
     }
 }
