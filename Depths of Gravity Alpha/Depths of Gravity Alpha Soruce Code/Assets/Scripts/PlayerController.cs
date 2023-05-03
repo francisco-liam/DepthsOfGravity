@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,10 @@ public class PlayerController : MonoBehaviour
     public float iTime;
     public GameObject heart2;
     public GameObject heart3;
-    //public TextMeshProUGUI healthText;
+    public int ammo;
+    public GameObject coal;
+    public AudioSource gravSound;
+    public TextMeshProUGUI ammoText;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +52,41 @@ public class PlayerController : MonoBehaviour
         {
             float gravY = Physics.gravity.y;
             Physics.gravity = new Vector3(1, -gravY, 1);
-        }   
+            gravSound.Play();
+        }
 
-        if(damageTimer < iTime)
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ammo > 0)
+        {
+            Vector3 lookPos;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit, 15))
+            {
+                lookPos = hit.point;
+            }
+            else
+            {
+                lookPos = Input.mousePosition;
+                lookPos.z = 15;
+                lookPos = Camera.main.ScreenToWorldPoint(lookPos);
+            }
+
+            GameObject proj = Instantiate(coal, transform.position, Quaternion.identity);
+            Physics.IgnoreCollision(proj.GetComponent<Collider>(), GetComponent<Collider>());
+
+
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
+            Vector3 direction = lookPos - transform.position;
+
+            direction.Normalize();
+
+            rb.AddForce(direction * 1000f);
+            ammo--;
+            ammoText.text = ammo + "/10";
+        }
+
+        if (damageTimer < iTime)
             damageTimer += Time.deltaTime;
 
         if (damageTimer > iTime)
@@ -83,6 +119,20 @@ public class PlayerController : MonoBehaviour
             {
                 heart2.SetActive(false);
             }
+        }
+        if (collision.collider.CompareTag("Gem")) 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ammo"))
+        {
+            if(ammo<10)
+                ammo++;
+            ammoText.text = ammo + "/10";
         }
     }
 }
