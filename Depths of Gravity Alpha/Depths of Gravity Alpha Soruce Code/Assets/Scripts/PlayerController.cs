@@ -48,14 +48,23 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(velocity * Time.deltaTime, 0, 0);
         }
 
+        float gravY = Physics.gravity.y;
+        //Debug.Log(gravY);
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            float gravY = Physics.gravity.y;
             Physics.gravity = new Vector3(1, -gravY, 1);
             gravSound.Play();
         }
 
-        
+        Quaternion targetRotation;
+        if (gravY == 9.81f)
+            targetRotation = Quaternion.Euler(0, 0, 180);
+        else
+            targetRotation = Quaternion.Euler(0, 0, 0);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2 * Time.deltaTime);
+
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && ammo > 0)
         {
             Vector3 lookPos;
