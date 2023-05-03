@@ -42,9 +42,20 @@ public class LoadInstructions : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void loadLevelSelect()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("LevelSelect");
+    }
+
     public void loadFirstLevel()
     {
         SceneManager.LoadScene("Level1");
+    }
+
+    public void loadSecondLevel()
+    {
+        SceneManager.LoadScene("Level2");
     }
 
     public void loadCredits()
