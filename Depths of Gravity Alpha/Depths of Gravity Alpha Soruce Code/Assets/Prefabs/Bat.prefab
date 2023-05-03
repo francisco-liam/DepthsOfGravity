@@ -99,7 +99,10 @@ MonoBehaviour:
   player: {fileID: 0}
   projectilePrefab: {fileID: 9061286332758790436, guid: af3750aa28554b6489da2ae6a582afd0, type: 3}
   spitSound: {fileID: -7222683746241442878}
-  projectileSpeed: 0
+  projectileSpeed: 300
+  oneWayTime: 0
+  initialPos: {x: 0, y: 0, z: 0}
+  finalPos: {x: 0, y: 0, z: 0}
 --- !u!82 &-7222683746241442878
 AudioSource:
   m_ObjectHideFlags: 0
@@ -110,7 +113,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e49ade0576cfa894388c7b2bfe9c08f7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c7721d677c9e2034caab95ab508c79fc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -118,7 +121,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

@@ -56,22 +56,30 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0) && ammo > 0)
         {
+            Vector3 lookPos;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit))
+            if(Physics.Raycast(ray, out hit, 15))
             {
-                GameObject proj = Instantiate(coal, transform.position, Quaternion.identity);
-                Physics.IgnoreCollision(proj.GetComponent<Collider>(), GetComponent<Collider>());
-
-
-                Rigidbody rb = proj.GetComponent<Rigidbody>();
-                Vector3 direction = hit.point - transform.position;
-
-                direction.Normalize();
-
-                rb.AddForce(direction * 1000f);
-
+                lookPos = hit.point;
             }
+            else
+            {
+                lookPos = Input.mousePosition;
+                lookPos.z = 15;
+                lookPos = Camera.main.ScreenToWorldPoint(lookPos);
+            }
+
+            GameObject proj = Instantiate(coal, transform.position, Quaternion.identity);
+            Physics.IgnoreCollision(proj.GetComponent<Collider>(), GetComponent<Collider>());
+
+
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
+            Vector3 direction = lookPos - transform.position;
+
+            direction.Normalize();
+
+            rb.AddForce(direction * 1000f);
         }
 
         if (damageTimer < iTime)
