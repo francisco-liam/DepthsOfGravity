@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public GameObject heart3;
     public int ammo;
     public GameObject coal;
-    //public TextMeshProUGUI healthText;
+    public AudioSource gravSound;
+    public TextMeshProUGUI ammoText;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             float gravY = Physics.gravity.y;
             Physics.gravity = new Vector3(1, -gravY, 1);
+            gravSound.Play();
         }
 
         
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour
             direction.Normalize();
 
             rb.AddForce(direction * 1000f);
+            ammo--;
+            ammoText.text = ammo + "/10";
         }
 
         if (damageTimer < iTime)
@@ -126,7 +130,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Ammo"))
         {
-            ammo++;
+            if(ammo<10)
+                ammo++;
+            ammoText.text = ammo + "/10";
         }
     }
 }
