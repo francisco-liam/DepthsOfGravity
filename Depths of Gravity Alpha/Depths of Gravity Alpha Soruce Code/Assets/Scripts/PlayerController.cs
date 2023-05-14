@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource gravSound;
     public AudioSource hurtSound;
     public TextMeshProUGUI ammoText;
+    public int rayHitRange;
 
     // Start is called before the first frame update
     void Start()
@@ -71,18 +72,21 @@ public class PlayerController : MonoBehaviour
             Vector3 lookPos;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, 15))
+            if(Physics.Raycast(ray, out hit, rayHitRange))
             {
                 lookPos = hit.point;
+                Debug.Log("hit");
             }
             else
             {
                 lookPos = Input.mousePosition;
-                lookPos.z = 15;
+                lookPos.z = rayHitRange;
                 lookPos = Camera.main.ScreenToWorldPoint(lookPos);
+                Debug.Log("didn't");
+                Debug.Log(lookPos);
             }
 
-            GameObject proj = Instantiate(coal, transform.position, Quaternion.identity);
+            GameObject proj = Instantiate(coal, transform.position + new Vector3(0,0,1), Quaternion.identity);
             Physics.IgnoreCollision(proj.GetComponent<Collider>(), GetComponent<Collider>());
 
 
