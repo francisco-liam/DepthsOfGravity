@@ -63,6 +63,10 @@ public class LoadInstructions : MonoBehaviour
         SceneManager.LoadScene("Level3 new");
     }
 
+    public void loadBossLevel()
+    {
+        SceneManager.LoadScene("Boss Level");
+    }
     public void loadCredits()
     {
         SceneManager.LoadScene("Credits");

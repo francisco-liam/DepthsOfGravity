@@ -23,12 +23,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public bool isFlipped = false;
+    public GameObject respawnMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         health = 3;
         iTime = 2;
+        respawnMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -115,10 +118,15 @@ public class PlayerController : MonoBehaviour
 
         //healthText.text = "Health: " + health + "/3";
 
-        if(health <= 0)
+        /*if(health <= 0)
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+        }*/
+        if(health == 0)
+        {
+            respawnMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
 
         float horizontalInput = Input.GetAxis("Horizontal");
