@@ -153,4 +153,15 @@ public class PlayerController : MonoBehaviour
             ammoText.text = ammo + "/10";
         }
     }
+
+    public void load()
+    {
+        StartCoroutine(loadLevelSelect());
+    }
+
+    public IEnumerator loadLevelSelect()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("LevelSelect");
+    }
 }

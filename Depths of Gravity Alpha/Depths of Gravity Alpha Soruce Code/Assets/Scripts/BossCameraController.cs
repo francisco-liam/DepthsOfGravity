@@ -6,6 +6,8 @@ public class BossCameraController : MonoBehaviour
 {
     public float backBound;
     public float frontBound;
+    public float rightBound;
+    public float leftBound;
     public GameObject player;
 
     public float switchTime;
@@ -32,7 +34,7 @@ public class BossCameraController : MonoBehaviour
         if(switching)
             lerpTimer += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)) 
+        if(Input.GetKeyUp(KeyCode.LeftShift)) 
         {
             startY = transform.position.y;
             lerpTimer = 0;
@@ -40,7 +42,8 @@ public class BossCameraController : MonoBehaviour
             onGround = !onGround;
         }
         
-        float xPos = transform.position.x;
+        float xPos = player.transform.position.x;
+        xPos = Mathf.Clamp(xPos, leftBound, rightBound);
         float yPos;
         if (!onGround)
             yPos = Mathf.SmoothStep(startY, topY, lerpTimer / switchTime);
