@@ -4018,7 +4018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e74725be45a5084380b9b7636343b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
+  velocity: 5
   health: 0
   damageTimer: 0
   iTime: 0
@@ -4030,8 +4030,8 @@ MonoBehaviour:
   hurtSound: {fileID: 444493882}
   ammoText: {fileID: 244617957}
   rayHitRange: 0
-  speed: 0
-  rotationSpeed: 0
+  speed: 5
+  rotationSpeed: 720
   isFlipped: 0
   respawnMenu: {fileID: 233631834}
 --- !u!54 &444493877
