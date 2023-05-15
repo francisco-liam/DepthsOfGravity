@@ -7988,7 +7988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e74725be45a5084380b9b7636343b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
+  velocity: 5
   health: 0
   damageTimer: 0
   iTime: 0
@@ -8000,6 +8000,8 @@ MonoBehaviour:
   hurtSound: {fileID: 1802711109}
   ammoText: {fileID: 1777476806}
   rayHitRange: 100
+  speed: 5
+  rotationSpeed: 720
 --- !u!54 &1802711103
 Rigidbody:
   m_ObjectHideFlags: 0

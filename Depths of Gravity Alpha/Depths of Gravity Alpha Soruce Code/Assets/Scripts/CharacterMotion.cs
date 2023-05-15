@@ -26,11 +26,6 @@ public class CharacterMotion : MonoBehaviour
         bool isRunningBackwards = animator.GetBool("isRunningBackwards");
         bool backwardsPressed = Input.GetKey(KeyCode.S);
 
-        bool isRunningBackLeft = animator.GetBool("isRunningBackLeft");
-
-        bool isRunningBackRight = animator.GetBool("isRunningBackLeft");
-
-
         //run forward
         if (!isRunningForward && forwardPressed)
         {
@@ -41,54 +36,30 @@ public class CharacterMotion : MonoBehaviour
             animator.SetBool("isRunningForward", false);
         }
 
-        //run left
-        if(isRunningForward && leftPressed)
+        if(!isRunningLeft && leftPressed)
         {
-            animator.SetBool("isRunningRight", true);
+            animator.SetBool("isRunningForward", true);
         }
-        if (isRunningForward && !leftPressed)
+        if(isRunningLeft && !leftPressed)
         {
-            animator.SetBool("isRunningRight", false);
-        }
-
-        //run right
-        if (isRunningForward && rightPressed)
-        {
-            animator.SetBool("isRunningLeft", true);
-        }
-        if (isRunningForward && !rightPressed)
-        {
-            animator.SetBool("isRunningLeft", false);
+            animator.SetBool("isRunningForward", false);
         }
 
-        //run backwards
-        if(!isRunningBackwards && backwardsPressed)
+        if (!isRunningRight && rightPressed)
         {
-            animator.SetBool("isRunningBackwards", true);
+            animator.SetBool("isRunningForward", true);
+        }
+        if (isRunningRight && !rightPressed)
+        {
+            animator.SetBool("isRunningForward", false);
+        }
+        if (!isRunningBackwards && backwardsPressed)
+        {
+            animator.SetBool("isRunningForward", true);
         }
         if (isRunningBackwards && !backwardsPressed)
         {
-            animator.SetBool("isRunningBackwards", false);
-        }
-
-        //run backwards left
-        if(isRunningBackwards && leftPressed)
-        {
-            animator.SetBool("isRunningBackLeft", true);
-        }
-        if(isRunningBackwards && !leftPressed)
-        {
-            animator.SetBool("isRunningBackLeft", false);
-        }
-
-        //run backwards right
-        if (isRunningBackwards && rightPressed)
-        {
-            animator.SetBool("isRunningBackRight", true);
-        }
-        if (isRunningBackwards && !rightPressed)
-        {
-            animator.SetBool("isRunningBackRight", false);
+            animator.SetBool("isRunningForward", false);
         }
     }
 }
