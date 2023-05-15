@@ -58,6 +58,11 @@ public class LoadInstructions : MonoBehaviour
         SceneManager.LoadScene("Level2");
     }
 
+    public void loadThirdLevel()
+    {
+        SceneManager.LoadScene("Level3 new");
+    }
+
     public void loadCredits()
     {
         SceneManager.LoadScene("Credits");
