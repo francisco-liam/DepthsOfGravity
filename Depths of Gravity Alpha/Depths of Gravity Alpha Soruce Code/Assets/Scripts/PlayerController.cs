@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float rotationSpeed;
+    public bool isFlipped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(gravY);
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            isFlipped = !isFlipped;
             Physics.gravity = new Vector3(1, -gravY, 1);
             gravSound.Play();
         }
@@ -124,12 +126,16 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();
-
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
-        if(movementDirection != Vector3.zero)
+        if((movementDirection != Vector3.zero) && isFlipped == false)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+        if ((movementDirection != Vector3.zero) && isFlipped == true)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.down);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
